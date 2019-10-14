@@ -1,0 +1,107 @@
+// SASS
+
+scss => styles.scss (@import "partials/mixins")
+        partials => _mixins.scss
+                    _variables.scss
+
+// GULP
+
+/* Vérifier dans le package.json la présence des paquets gulp et gulp-sass */
+
+const { series, src, dest, watch } = require('gulp');
+const gulpSass = require('gulp-sass');
+
+function compileScssToCss(done) {
+    return src('src/scss/styles.scss')
+    .pipe(gulpSass())
+    .pipe(dest('dist'));
+}
+
+exports.scssTask = series(compileScssToCss);
+
+// WEBPACK BOOTSTRAP
+
+Dans src/index.js
+    import style from ".scss/main.scss";
+
+Dans src/main.scss
+    // Required
+    @import "~bootstrap/scss/functions";
+    @import "~bootstrap/scss/variables";
+    @import "~bootstrap/scss/mixins";
+
+    @import "functions";
+    @import "variables";
+    @import "mixins";
+
+    // Optional
+    @import "~bootstrap/scss/root";
+
+    @import "root";
+    @import "reboot";
+    @import "type";
+    @import "images";
+    @import "code";
+    @import "grid";
+    @import "tables";
+    @import "forms";
+    @import "buttons";
+    @import "transitions";
+    @import "dropdown";
+    @import "button-group";
+    @import "input-group";
+    @import "custom-forms";
+    @import "nav";
+    @import "navbar";
+    @import "card";
+    @import "breadcrumb";
+    @import "pagination";
+    @import "badge";
+    @import "jumbotron";
+    @import "alert";
+    @import "progress";
+    @import "media";
+    @import "list-group";
+    @import "close";
+    @import "toasts";
+    @import "modal";
+    @import "tooltip";
+    @import "popover";
+    @import "carousel";
+    @import "spinners";
+    @import "utilities";
+    @import "print";
+    
+// BONNES PRATIQUES
+
+HTML5 Boilerplate
+W3C Validator
+Merkle json-ld generator
+Meta OpenGraph <meta property="og:title" content="titre de mon article">
+
+// POSITIONNEMENT CSS
+
+/* Sélécteurs */
+body :nth-child(2n+1)
+
+/* Display flex */
+justify-content (horizontalement) /** flex-start flex-end center space-between space-around **/
+align-items (verticalement) /** flex-start flex-end center baseline stretch **/
+align-self
+align-content (plusieurs lignes)
+
+flex-direction (tableau) /** row row-reverse column column-reverse **/
+flex-wrap (étalement) /** wrap nowrap wrap-reverse **/
+flex-flow (direction + wrap)
+order
+
+/* Display grid */
+grid-column-start
+grid-column-end
+grid-column: start / end
+grid-row: start / end
+grid-area: rowstart / columnstart / rowend / columnend
+order
+grid-template: rows / columns => repeat(x, %) --> soit % px em fr
+
+
